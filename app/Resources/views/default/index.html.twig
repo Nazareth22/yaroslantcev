@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    <h2>Яндекс Метрика</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>Диапазон</th>
+            <th>Визиты</th>
+            <th>Посетители</th>
+            <th>Просмотры</th>
+            <th>Доля новых посетителей</th>
+            <th>Отказы</th>
+            <th>Глубина просмотра</th>
+            <th>Время на сайте</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for metrika in metrikaPeriod %}
+        <tr>
+            <td>{{ metrika.dimensions.0.name }}</td>
+            {% for value in metrika.metrics %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
