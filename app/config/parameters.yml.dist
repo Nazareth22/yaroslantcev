@@ -14,9 +14,9 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
-    yan_metrika_access_token: AQAAAAAL8T2KAAV1-OI-6Z8z6Ug1oqolVjKsn8U
-    yan_metrika_url_api: 'https://api-metrika.yandex.net/'
-    yan_metrika_counter_id: 52139917
+    yan_metrika_access_token: ~
+    yan_metrika_url_api: ~
+    yan_metrika_counter_id: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
