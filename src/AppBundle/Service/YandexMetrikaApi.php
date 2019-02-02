@@ -25,12 +25,43 @@ class YandexMetrikaApi
 
     public function getTable()
     {
-        return $this->getData($this->urlApi.
-            "stat/v1/data?ids=".
+        $result = array();
+        $url = $this->urlApi.
+            "stat/v1/data/bytime?ids=".
             $this->counterId.
-            "&preset=traffic".
-            "&pretty=1"
-        );
+            "&date1=4daysAgo".
+            "&date2=today".
+            "&dimensions=ym:s:<attribution>TrafficSource&attribution=last".
+            "&group=day".
+            "&preset=traffic"
+            ;
+        $data = $this->getData($url);
+
+        $i = 0;
+        foreach ($data['time_intervals'] as $date)
+        {
+            $metricsArr = [];
+            $j = 0;
+            foreach ($data['data']->metrics as $metric)
+            {
+                if ($j == 6)
+                {
+                    $metricsArr[] = gmdate('i:s', $metric[$i]);
+                }
+                else
+                {
+                    $metricsArr[] = $metric[$i];
+                }
+                $j++;
+            }
+            $result[] = ['date'=>$date[0], 'metrics'=>$metricsArr];
+
+            $i++;
+        }
+
+
+
+        return  array_reverse($result);
     }
 
     private function getData($url)
@@ -55,13 +86,7 @@ class YandexMetrikaApi
             $data=json_decode($data);
             if ($data)
             {
-                if (property_exists($data,'data'))
-                {
-                    if ($data->data!='')
-                    {
-                        $result=$data->data;
-                    }
-                }
+                $result = ['data'=>$data->data['0'], 'time_intervals'=>$data->time_intervals];
             }
             curl_close($curl);
         }

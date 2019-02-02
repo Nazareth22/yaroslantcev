@@ -4,8 +4,8 @@
     <h2>Яндекс Метрика</h2>
     <table class="table">
         <thead class="thead-dark">
-        <tr>
-            <th>Диапазон</th>
+        <tr align="center">
+            <th>Дата</th>
             <th>Визиты</th>
             <th>Посетители</th>
             <th>Просмотры</th>
@@ -16,10 +16,10 @@
         </tr>
         </thead>
         <tbody>
-        {% for metrika in metrikaPeriod %}
-        <tr>
-            <td>{{ metrika.dimensions.0.name }}</td>
-            {% for value in metrika.metrics %}
+        {% for metrics in metricsPeriod %}
+        <tr align="center">
+            <td>{{ metrics.date }}</td>
+            {% for value in metrics.metrics %}
             <td>{{ value }}</td>
             {% endfor %}
         </tr>

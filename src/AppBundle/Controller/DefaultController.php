@@ -15,6 +15,6 @@ class DefaultController extends Controller
     {
         $metrika = $this->get('yandex.metrica.api')->getTable();
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array('metrikaPeriod'=>$metrika));
+        return $this->render('default/index.html.twig', array('metricsPeriod'=>$metrika));
     }
 }
