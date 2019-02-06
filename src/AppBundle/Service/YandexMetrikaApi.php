@@ -86,7 +86,7 @@ class YandexMetrikaApi
             $data=json_decode($data);
             if ($data)
             {
-                $result = ['data'=>$data->data['0'], 'time_intervals'=>$data->time_intervals];
+                $result = ['data'=>$data->data[0], 'time_intervals'=>$data->time_intervals];
             }
             curl_close($curl);
         }
